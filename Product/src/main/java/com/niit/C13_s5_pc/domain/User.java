@@ -7,63 +7,63 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Objects;
 
 @Document
-public class Customer {
+public class User {
 
     @Id
-    private int customerId;
-    private String customerName;
-    private long customerPhoneNo;
-    private Product customerProduct;
+    private int userId;
+    private String userName;
+    private long userPhoneNo;
+    private Product userProduct;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(int customerId, String customerName, long customerPhoneNo, Product customerProduct) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.customerPhoneNo = customerPhoneNo;
-        this.customerProduct = customerProduct;
+    public User(int userId, String userName, long userPhoneNo, Product userProduct) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPhoneNo = userPhoneNo;
+        this.userProduct = userProduct;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUserId(int customerId) {
+        this.userId = userId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public long getCustomerPhoneNo() {
-        return customerPhoneNo;
+    public long getUserPhoneNo() {
+        return userPhoneNo;
     }
 
-    public void setCustomerPhoneNo(long customerPhoneNo) {
-        this.customerPhoneNo = customerPhoneNo;
+    public void setUserPhoneNo(long userPhoneNo) {
+        this.userPhoneNo = userPhoneNo;
     }
 
-    public Product getCustomerProduct() {
-        return customerProduct;
+    public Product getUserProduct() {
+        return userProduct;
     }
 
-    public void setCustomerProduct(Product customerProduct) {
-        this.customerProduct = customerProduct;
+    public void setUserProduct(Product userProduct) {
+        this.userProduct = userProduct;
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", customerName='" + customerName + '\'' +
-                ", customerPhoneNo=" + customerPhoneNo +
-                ", customerProduct=" + customerProduct +
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPhoneNo=" + userPhoneNo +
+                ", userProduct=" + userProduct +
                 '}';
     }
 
@@ -71,12 +71,12 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return customerId == customer.customerId && customerPhoneNo == customer.customerPhoneNo && Objects.equals(customerName, customer.customerName) && Objects.equals(customerProduct, customer.customerProduct);
+        User user = (User) o;
+        return userId == user.userId && userPhoneNo == user.userPhoneNo && Objects.equals(userName, user.userName) && Objects.equals(userProduct, user.userProduct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, customerName, customerPhoneNo, customerProduct);
+        return Objects.hash(userId, userName, userPhoneNo, userProduct);
     }
 }

@@ -8,8 +8,11 @@ import java.util.List;
 
 public interface IUserService {
 
-    public User addCustomer(User user) throws UserAlreadyExistException;
-    public List<User> getAllCustomer();
-    public String deleteCustomer(int id) throws UserNotFoundException;
-    public List<User> getCustomerWhoBougthSamsungPhone(String product);
+    public User addUser(User user) throws UserAlreadyExistException;
+
+    public List<User> getAllUser();
+
+    public String deleteUser(int id) throws UserNotFoundException;
+
+    public List<User> getUserWhoBougthSamsungPhone(String product);
 }

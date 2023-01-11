@@ -1,8 +1,6 @@
 package com.niit.C13_s5_pc.service;
 
 import com.niit.C13_s5_pc.domain.User;
-import com.niit.C13_s5_pc.exception.CustomerAlreadyExistException;
-import com.niit.C13_s5_pc.exception.CustomerNotFoundException;
 import com.niit.C13_s5_pc.exception.UserAlreadyExistException;
 import com.niit.C13_s5_pc.exception.UserNotFoundException;
 import com.niit.C13_s5_pc.repository.UserRepository;
@@ -20,7 +18,7 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public User addCustomer(User user) throws UserAlreadyExistException {
+    public User addUser(User user) throws UserAlreadyExistException {
         if (userRepository.findById(user.getUserId()).isEmpty()) {
             return userRepository.save(user);
         }
@@ -28,20 +26,20 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
-    public List<User> getAllCustomer() {
+    public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
     @Override
-    public String deleteCustomer(int id) throws UserNotFoundException {
-        if (userRepository.findById(id).isEmpty()){
+    public String deleteUser(int id) throws UserNotFoundException {
+        if (userRepository.findById(id).isEmpty()) {
             throw new UserNotFoundException();
         }
         return "User Deleted successfully";
     }
 
     @Override
-    public List<User> getCustomerWhoBougthSamsungPhone(String product) {
+    public List<User> getUserWhoBougthSamsungPhone(String product) {
         return userRepository.getUserWhoBougthSamsungPhone(product);
     }
 }

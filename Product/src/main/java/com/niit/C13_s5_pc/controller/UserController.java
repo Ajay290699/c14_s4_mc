@@ -2,49 +2,52 @@ package com.niit.C13_s5_pc.controller;
 
 
 import com.niit.C13_s5_pc.domain.User;
-import com.niit.C13_s5_pc.exception.CustomerAlreadyExistException;
-import com.niit.C13_s5_pc.exception.CustomerNotFoundException;
-import com.niit.C13_s5_pc.service.ICustomerService;
+import com.niit.C13_s5_pc.exception.UserAlreadyExistException;
+import com.niit.C13_s5_pc.exception.UserNotFoundException;
+import com.niit.C13_s5_pc.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
-public class CustomerController {
+public class UserController {
 
-    ICustomerService customerService;
+    IUserService userService;
 
-    public CustomerController(ICustomerService customerService) {
-        this.customerService = customerService;
+    @Autowired
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> addCustomer(@RequestBody User user){
+    public ResponseEntity<?> addUser(@RequestBody User user) {
+        System.out.println(user);
         try {
-            return new ResponseEntity<>(customerService.addCustomer(user), HttpStatus.CREATED);
-        } catch (CustomerAlreadyExistException e) {
+            return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
+        } catch (UserAlreadyExistException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @GetMapping("/customer")
-    public ResponseEntity<?> getAllCustomer(){
-        return new ResponseEntity<>(customerService.getAllCustomer(),HttpStatus.CREATED);
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllCustomer() {
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/customer/{id}")
-    public ResponseEntity<?> deleteCustomerById(@PathVariable int id){
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable int id) {
         try {
-            return new ResponseEntity<>(customerService.deleteCustomer(id),HttpStatus.OK);
-        } catch (CustomerNotFoundException e) {
+            return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
+        } catch (UserNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @GetMapping("/customers/{product}")
-    public ResponseEntity<?> getCustomerBySamsungPhone(@PathVariable String product){
-        return new ResponseEntity<>(customerService.getCustomerWhoBougthSamsungPhone(product),HttpStatus.OK);
+    @GetMapping("/users/{product}")
+    public ResponseEntity<?> getUserBySamsungPhone(@PathVariable String product) {
+        return new ResponseEntity<>(userService.getUserWhoBougthSamsungPhone(product), HttpStatus.OK);
     }
 
 }
