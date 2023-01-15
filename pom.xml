@@ -23,6 +23,7 @@
     <module>
       Product
     </module>
+    <module>APIGatewayService</module>
   </modules>
 
   <properties>
